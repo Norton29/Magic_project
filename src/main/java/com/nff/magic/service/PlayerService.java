@@ -1,6 +1,7 @@
 package com.nff.magic.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.nff.magic.domain.Player;
+import com.nff.magic.domain.PlayerVO;
 import com.nff.magic.domain.dto.PlayerFilterDTO;
 import com.nff.magic.repository.PlayerRepository;
 import com.nff.magic.service.exception.ResourceNotFoundException;
@@ -38,8 +40,10 @@ public class PlayerService {
         );
     }
 
-    public Player insert(Player player) {
-        return playerRepository.save(player);
+    public PlayerVO insert(Player player) {
+    	player.setGamerTag(UUID.randomUUID().toString());
+    	Player save = playerRepository.save(player);   		    	
+        return new PlayerVO(save.getId(), save.getName(), save.getNickname(), save.getGamerTag());
     }
 
     public void delete(Long id) {

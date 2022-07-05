@@ -39,7 +39,7 @@ public class Player {
 	private String nickname;
 	
 
-	private UUID gamerTag;
+	private String gamerTag;
 	
 	@OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Deck> decks ;

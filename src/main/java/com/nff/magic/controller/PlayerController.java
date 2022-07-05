@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nff.magic.domain.Player;
-import com.nff.magic.domain.dto.PlayerDTO;
+import com.nff.magic.domain.PlayerVO;
 import com.nff.magic.domain.dto.PlayerFilterDTO;
 import com.nff.magic.service.PlayerService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(value = "/player")
+@RequestMapping(value = "/players")
 @RequiredArgsConstructor
 public class PlayerController {
 
@@ -58,10 +58,9 @@ public class PlayerController {
 
     /*Metodo para Inserir novos Players*/
     @PostMapping
-    public ResponseEntity<PlayerDTO> insert(@RequestBody Player playerParam) {
-        Player player = playerService.insert(playerParam);
-        PlayerDTO playerDTO = new PlayerDTO(player);
-        return ResponseEntity.ok().body(playerDTO);
+    public ResponseEntity<PlayerVO> insert(@RequestBody Player playerParam) {
+        PlayerVO player = playerService.insert(playerParam);        
+        return ResponseEntity.ok().body(player);
     }
 
     /* Metodo para Deletar Deck pelo Id*/
@@ -73,10 +72,8 @@ public class PlayerController {
 
     /* Metodo para atualizar dados do Player utilizando o Id como referência*/
     @PutMapping(value = "/{id}")
-    public ResponseEntity<PlayerDTO> update(@PathVariable Long id, @RequestBody Player player) {
-        player = playerService.update(id, player);
-        PlayerDTO playerDTO = new PlayerDTO(player);
-        return ResponseEntity.ok().body(playerDTO);
+    public ResponseEntity<Player> update(@PathVariable Long id, @RequestBody Player player) {
+          return ResponseEntity.ok().body(playerService.update(id, player));
     }
 
 

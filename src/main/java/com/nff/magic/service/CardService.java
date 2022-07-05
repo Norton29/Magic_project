@@ -2,8 +2,6 @@ package com.nff.magic.service;
 
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
@@ -13,7 +11,6 @@ import com.nff.magic.domain.Card;
 import com.nff.magic.domain.dto.CardFilterDTO;
 import com.nff.magic.repository.CardRepository;
 import com.nff.magic.service.exception.ConstraintException;
-import com.nff.magic.service.exception.ResourceNotFoundException;
 
 @Service
 public class CardService {
@@ -54,6 +51,7 @@ public class CardService {
 	
 	public Card insert(Card card) {
 		try {
+			
 			return cardRepository.save(card);
 		}catch(DataIntegrityViolationException e) {
 			throw new ConstraintException();
@@ -64,14 +62,18 @@ public class CardService {
 		cardRepository.deleteById(id);
 	}
 	
-	public Card update(Long id, Card card) {
-		try {
-		Card entity = cardRepository.getReferenceById(id);
-		updateData(entity, card);
-		return cardRepository.save(entity);
-		} catch(EntityNotFoundException e) {
-			throw new ResourceNotFoundException(id);
+	public Card update(Long id, Card card, String gamerTag) {
+		
+		String findGamerTagById = cardRepository.findGamerTagById(id);
+		if(findGamerTagById.equals(gamerTag)) {
+			Card entity = cardRepository.getReferenceById(id);
+			updateData(entity, card);
+			return cardRepository.save(entity);
+			
+		}else {
+			throw new IllegalArgumentException("Gamer Tag Inválida");
 		}
+		
 		
 	}
 	

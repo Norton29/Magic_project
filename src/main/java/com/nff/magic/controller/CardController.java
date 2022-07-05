@@ -15,14 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nff.magic.domain.Card;
-import com.nff.magic.domain.dto.CardDTO;
 import com.nff.magic.domain.dto.CardFilterDTO;
 import com.nff.magic.service.CardService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(value = "/card")
+@RequestMapping(value = "/cards")
 @RequiredArgsConstructor
 public class CardController {
 	
@@ -60,10 +59,9 @@ public class CardController {
 	
 	/*Metodo para Inserir novos Decks*/	
 	@PostMapping
-	public ResponseEntity<CardDTO> insert (@RequestBody Card playerParam, @RequestHeader("gamerTag") String gamerTag){
-		Card card = cardService.insert(playerParam);
-		CardDTO cardDTO = new CardDTO(card);
-		return ResponseEntity.ok().body(cardDTO);
+	public ResponseEntity<Card> insert (@RequestBody Card playerParam){
+		Card card = cardService.insert(playerParam);		
+		return ResponseEntity.ok().body(card);
 	}
 	
 	/* Metodo para Deletar Deck pelo Id*/	
@@ -75,10 +73,13 @@ public class CardController {
 	
 	/* Metodo para atualizar dados do Deck utilizando o Id como referência*/	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<CardDTO> update(@PathVariable Long id, @RequestBody Card card) {
-		card = cardService.update(id, card);
-		CardDTO cardDTO = new CardDTO(card);
-		return ResponseEntity.ok().body(cardDTO);
+	public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody Card card,  @RequestHeader("gamerTag") String gamerTag) {		
+		try {
+			return ResponseEntity.ok().body(cardService.update(id, card, gamerTag));
+			
+		}catch(Exception e) {
+			return ResponseEntity.unprocessableEntity().body(e.getMessage());
+		}
 	}
 	
 //	/* Metodo ainda não finalizado para inserir associação entre cartas e decks*/	

@@ -22,7 +22,7 @@ import com.nff.magic.service.DeckService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(value = "/deck")
+@RequestMapping(value = "/decks")
 @RequiredArgsConstructor
 public class DeckController {
 	
