@@ -7,6 +7,7 @@ spring:
 
  jpa:
    hibernate.ddl-auto: create-drop
+   hibernate.dialect: true
    generate-ddl: true
    show-sql: true
    
