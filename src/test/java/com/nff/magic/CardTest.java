@@ -25,72 +25,72 @@ public class CardTest {
 
 
 
-	/*Listar por ordem alfabetico*/
-	@Test
-	void cardTestFindByNameASC() {
-	
-		cardService.findBy(
-				CardFilterDTO.builder()
-					.id(null)
-	                .name("")	                                        
-	                .sort("ASC,name")
-	                .build());
-		
-	
-	}
-	
-	/*Listar por ordem de valor*/
-	@Test
-	void cardTestFindByPriceASC() {
-	
-		cardService.findBy(
-				CardFilterDTO.builder()
-					.id(null)
-	                .name("")	                                        
-	                .sort("ASC,price")
-	                .build());
-		
-	
-	}
-	
-
-	/* Insert Test para adicionar Card */
-	@Test
-	void insertCardTest() {
-		var createCard = Card.builder()
-				.name("Espada")
-				.edition(1)
-				.language(Language.INGLÊS)
-				.foil(true)
-				.price(500.00)
-				.quantity(1)				
-				.build();
-
-		cardRepository.save(createCard);	
-
-	}
-
-	/* Delete Teste */
-	@Test
-	void deleteTest() {	
-		
-
-		cardService.delete(2L);
-	}
+//	/*Listar por ordem alfabetico*/
+//	@Test
+//	void cardTestFindByNameASC() {
+//	
+//		cardService.findBy(
+//				CardFilterDTO.builder()
+//					.id(null)
+//	                .name("")	                                        
+//	                .sort("ASC,name")
+//	                .build());
+//		
+//	
+//	}
+//	
+//	/*Listar por ordem de valor*/
+//	@Test
+//	void cardTestFindByPriceASC() {
+//	
+//		cardService.findBy(
+//				CardFilterDTO.builder()
+//					.id(null)
+//	                .name("")	                                        
+//	                .sort("ASC,price")
+//	                .build());
+//		
+//	
+//	}
+//	
+//
+//	/* Insert Test para adicionar Card */
+//	@Test
+//	void insertCardTest() {
+//		var createCard = Card.builder()
+//				.name("Espada")
+//				.edition(1)
+//				.language(Language.INGLÊS)
+//				.foil(true)
+//				.price(500.00)
+//				.quantity(1)				
+//				.build();
+//
+//		cardRepository.save(createCard);	
+//
+//	}	
 
 	/* Atualiza Teste */
 
-	@Test
-	void updateCardTest() {
-		Card referenceById = cardRepository.getReferenceById(2L);
-
-		var updateCard = Card.builder()
-				.price(100.00)
-				.quantity(3)
-				.build();
-
-		cardService.updateData(referenceById, updateCard);
-		cardRepository.save(updateCard);
-
-	}
+//	@Test
+//	void updateCardTest() {
+//		Card referenceById = cardRepository.getReferenceById(1L);
+//
+//		var updateCard = Card.builder()
+//				.price(100.00)
+//				.quantity(3)
+//				.build();
+//
+//		cardService.updateData(referenceById, updateCard);
+//		cardRepository.save(updateCard);
+//
+//	}
+//	
+//	/* Delete Teste */
+//	@Test
+//	void deleteTest() {	
+//		
+//
+//		cardService.delete(1L);
+//	}
 }

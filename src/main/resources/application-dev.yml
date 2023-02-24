@@ -1,9 +1,9 @@
 spring:
  datasource:
-   driverClassName: com.mysql.cj.jdbc.Driver
-   url: jdbc:mysql://localhost:3306/magic
-   username: root
-   password: root
+   driverClassName: org.postgresql.Driver
+   url: jdbc:postgresql://localhost:5433/magic
+   username: postgres
+   password: postgres
 
  jpa:
    hibernate.ddl-auto: create-drop

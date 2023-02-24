@@ -25,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CardController {
 	
+	
 	private final CardService cardService;
 	
 	/* Metodo para buscar todos os Decks**/		
