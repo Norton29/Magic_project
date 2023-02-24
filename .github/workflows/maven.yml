@@ -20,6 +20,8 @@ jobs:
    runs-on: ubuntu-latest
    env:
     TZ: America/Sao_Paulo
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
    services:
     db:
      image: postgres:14.1-alpine
