@@ -20,8 +20,6 @@ jobs:
    runs-on: ubuntu-latest
    env:
     TZ: America/Sao_Paulo
-   container:
-    image:ubuntu:18.04
    services:
     db:
      image: postgres:14.1-alpine
