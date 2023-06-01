@@ -27,18 +27,17 @@ public class PlayerService {
 
 
     public List<Player> findBy(PlayerFilterDTO playerFilterDTO) {   
-    	
-        return this.playerRepository.findAll(
-                Example.of(
-                        Player.builder()
-                                .id(playerFilterDTO.getId())
-                                .name(playerFilterDTO.getName())
-                                .nickname(playerFilterDTO.getNickname())                                
-                                .build()
-                ), playerFilterDTO.getSort()
-               
-        );
+    	return this.playerRepository.findAll(
+		    Example.of(
+		            Player.builder()
+		                    .id(playerFilterDTO.getId())
+		                    .name(playerFilterDTO.getName())
+		                    .nickname(playerFilterDTO.getNickname())                                
+		                    .build()
+		    ), playerFilterDTO.getSort()           
+      );
     }
+    
 
     public PlayerVO insert(Player player) {
     	player.setGamerTag(UUID.randomUUID().toString());
@@ -59,7 +58,7 @@ public class PlayerService {
             throw new ResourceNotFoundException(id);
         }
     }
-    private void updateData(Player entity, Player player) {
+    public void updateData(Player entity, Player player) {
         entity.setName(player.getName());
         entity.setNickname(player.getNickname());
         entity.setDecks(player.getDecks());

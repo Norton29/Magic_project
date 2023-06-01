@@ -1,10 +1,14 @@
 package com.nff.magic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import javax.transaction.Transactional;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.nff.magic.domain.Deck;
 import com.nff.magic.repository.DeckRepository;
 import com.nff.magic.service.DeckService;
 
@@ -19,19 +23,19 @@ public class DeckTest {
 	private DeckService deckService;
 	
 
-//	/* Buscar Deck */
-//	@Test
-//	void deckTestFindAll() {
-//		deckRepository.findAll();
-//	}
-//
-////	/* Buscar pelo Id */
-////	@Test
-////	void deckTestFindById() {
-////		Deck findById = deckRepository.findById(10L).get();
-////		assertEquals(10l, findById.getId());
-////
-////	}
+	/* Buscar Deck */
+	@Test
+	void deckTestFindAll() {
+		deckRepository.findAll();
+	}
+
+	/* Buscar pelo Id */
+	@Test
+	void deckTestFindById() {
+		Deck findById = deckRepository.findById(10L).get();
+		assertEquals(10l, findById.getId());
+
+	}
 //
 //	
 //
